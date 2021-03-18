@@ -6,6 +6,7 @@ import Data.Maybe (fromMaybe)
 import Effect (Effect)
 import Node.Args (args)
 import Node.Encoding as Encoding
+import Effect.Console (log)
 import Node.FS.Sync as S
 import Node.Globals (__dirname)
 import Node.Path as Path
@@ -40,7 +41,8 @@ main = do
   templateContents <- S.readTextFile Encoding.UTF8 (path [ __dirname, "templates", "README.md.hbs" ])
   writeReadme getName getDesc templateContents
   settings <- S.readTextFile Encoding.UTF8 (path [ __dirname, ".vscode", "settings.json" ])
-  S.mkdir $ path [ ".vscode" ]
+  settingsExist <- S.exists $ path [ ".vscode" ]
+  if settingsExist then (log ".vscode already exists") else S.mkdir $ path [ ".vscode" ]
   writeSettings settings
   gitignore <- S.readTextFile Encoding.UTF8 (path [ __dirname, ".gitignore" ])
   writeGitignore gitignore

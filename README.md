@@ -1,6 +1,6 @@
-# Hello
+# Pureme
 
-> Random
+> Purescipt repo contents generator
 
 ## Prerequisites
 
