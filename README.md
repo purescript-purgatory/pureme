@@ -2,7 +2,9 @@
 
 > Purescipt repo contents generator
 
-## Prerequisites
+## Development
+
+### Prerequisites
 
 - Purescript
 
@@ -25,6 +27,14 @@ npm i -g purty
 - VSCode Purescript Extensions
     - `nwolverson.language-purescript`
     - `nwolverson.ide-purescript`
+
+### Scripts
+
+- Install locally:
+
+```sh
+$ yarn g:install
+```
 
 ## License
 
