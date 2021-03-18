@@ -6,6 +6,9 @@
   "dependencies": {
     "handlebars": "^4.7.7"
   },
+  "scripts": {
+    "g:install": "spago bundle-app && npm i -g ."
+  },
   "bin": {
     "pureme": "bin.js"
   },
