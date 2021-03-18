@@ -15,20 +15,21 @@ import Text.Handlebars (compile)
 path :: Array Path.FilePath -> Path.FilePath
 path = Path.concat
 
+writeFile :: String -> String -> Effect Unit
+writeFile = S.writeTextFile Encoding.UTF8
+
+readFile :: String -> Effect String
+readFile = S.readTextFile Encoding.UTF8
+
+-- Readme Functions
 template :: String -> { name :: String, desc :: String } -> String
 template handlebars = compile handlebars
 
-getFile :: String -> String -> String -> String
-getFile name desc contents = template contents { name: name, desc: desc }
+getReadmeFile :: String -> String -> String -> String
+getReadmeFile name desc contents = template contents { name: name, desc: desc }
 
 writeReadme :: String -> String -> String -> Effect Unit
-writeReadme n d c = S.writeTextFile Encoding.UTF8 (path [ "README.md" ]) $ getFile n d c
-
-writeSettings :: String -> Effect Unit
-writeSettings = S.writeTextFile Encoding.UTF8 (path [ ".vscode", "settings.json" ])
-
-writeGitignore :: String -> Effect Unit
-writeGitignore = S.writeTextFile Encoding.UTF8 (path [ ".gitignore" ])
+writeReadme n d c = writeFile (path [ "README.md" ]) $ getReadmeFile n d c
 
 getName :: String
 getName = fromMaybe "" (args !! 1)
@@ -38,11 +39,11 @@ getDesc = fromMaybe "" (args !! 2)
 
 main :: Effect Unit
 main = do
-  templateContents <- S.readTextFile Encoding.UTF8 (path [ __dirname, "templates", "README.md.hbs" ])
+  templateContents <- readFile (path [ __dirname, "templates", "README.md.hbs" ])
   writeReadme getName getDesc templateContents
-  settings <- S.readTextFile Encoding.UTF8 (path [ __dirname, ".vscode", "settings.json" ])
+  settings <- readFile (path [ __dirname, ".vscode", "settings.json" ])
   settingsExist <- S.exists $ path [ ".vscode" ]
   if settingsExist then (log ".vscode already exists") else S.mkdir $ path [ ".vscode" ]
-  writeSettings settings
-  gitignore <- S.readTextFile Encoding.UTF8 (path [ __dirname, ".gitignore" ])
-  writeGitignore gitignore
+  writeFile (path [ ".vscode", "settings.json" ]) settings
+  gitignore <- readFile (path [ __dirname, ".gitignore" ])
+  writeFile (path [ ".gitignore" ]) gitignore
