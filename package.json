@@ -1,0 +1,18 @@
+{
+  "name": "pureme",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "handlebars": "^4.7.7"
+  },
+  "bin": {
+    "pureme": "bin.js"
+  },
+  "files": [
+    "bin.js",
+    "index.js",
+    "templates",
+    ".vscode"
+  ]
+}

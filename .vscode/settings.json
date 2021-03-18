@@ -1,0 +1,19 @@
+{
+    "purescript.addSpagoSources": true,
+    "purescript.addNpmPath": true,
+    "purescript.buildCommand": "spago build -- --json-errors",
+    "[jsonc]": {
+        "editor.quickSuggestions": {
+            "strings": true
+        },
+        "editor.suggest.insertMode": "replace",
+        "gitlens.codeLens.scopes": [
+            "document"
+        ],
+        "editor.formatOnSave": true
+    },
+    "[purescript]": {
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "nwolverson.ide-purescript"
+    }
+}
