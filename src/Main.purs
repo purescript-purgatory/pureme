@@ -4,9 +4,9 @@ import Prelude
 import Data.List ((!!))
 import Data.Maybe (fromMaybe)
 import Effect (Effect)
+import Effect.Console (log)
 import Node.Args (args)
 import Node.Encoding as Encoding
-import Effect.Console (log)
 import Node.FS.Sync as S
 import Node.Globals (__dirname)
 import Node.Path as Path
