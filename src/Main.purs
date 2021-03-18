@@ -47,3 +47,5 @@ main = do
   writeFile (path [ ".vscode", "settings.json" ]) settings
   gitignore <- readFile (path [ __dirname, ".gitignore" ])
   writeFile (path [ ".gitignore" ]) gitignore
+  license <- readFile (path [ __dirname, "COPYING" ])
+  writeFile (path [ "COPYING" ]) license
