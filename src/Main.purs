@@ -49,3 +49,5 @@ main = do
   writeFile (path [ ".gitignore" ]) gitignore
   license <- readFile (path [ __dirname, "COPYING" ])
   writeFile (path [ "COPYING" ]) license
+  editorconfig <- readFile (path [ __dirname, ".editorconfig" ])
+  writeFile (path [ ".editorconfig" ]) editorconfig
