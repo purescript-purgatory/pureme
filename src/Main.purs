@@ -51,3 +51,5 @@ main = do
   writeFile (path [ "COPYING" ]) license
   editorconfig <- readFile (path [ __dirname, ".editorconfig" ])
   writeFile (path [ ".editorconfig" ]) editorconfig
+  bin <- readFile (path [ __dirname, "bin.js" ])
+  writeFile (path [ "bin.js" ]) bin
