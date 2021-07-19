@@ -7,10 +7,11 @@
     "handlebars": "^4.7.7"
   },
   "scripts": {
-    "g:install": "spago bundle-app && npm i -g ."
+    "prepare": "spago bundle-app && npm run executable",
+    "executable": "echo '#!/usr/bin/env node' | cat - ./index.js > temp && mv temp ./index.js"
   },
   "bin": {
-    "pureme": "bin.js"
+    "pureme": "index.js"
   },
   "files": [
     "bin.js",
